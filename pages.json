@@ -1,0 +1,75 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+				  "bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/prize/index",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+				  "bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/cart/index",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+				  "bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/mine/index",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+				  "bounce": "none"
+				}
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "爸爸厨房",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"selectedColor": "#FF8F1F",
+	    "list": [
+	      {
+	        "pagePath": "pages/index/index",
+	        "text": "首页",
+	        "iconPath": "static/icon/icon-menu.png",
+	        "selectedIconPath": "static/icon/icon-menu-active.png"
+	      },
+	      {
+	        "pagePath": "pages/prize/index",
+	        "text": "抽奖",
+	        "iconPath": "static/icon/icon-prize.png",
+	        "selectedIconPath": "static/icon/icon-prize-active.png"
+	      },
+	      {
+	        "pagePath": "pages/cart/index",
+	        "text": "购物车",
+	        "iconPath": "static/icon/icon-cart.png",
+	        "selectedIconPath": "static/icon/icon-cart-active.png"
+	      },
+	      {
+	        "pagePath": "pages/mine/index",
+	        "text": "我的",
+	        "iconPath": "static/icon/icon-person.png",
+	        "selectedIconPath": "static/icon/icon-person-active.png"
+	      }
+	    ]
+	}
+}

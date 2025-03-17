@@ -1,0 +1,20 @@
+{
+    "id": "fui-toast",
+    "name": "Toast 轻提示（fui-toast）",
+    "version": "v2.3.0",
+    "description": "FirstUI Toast 轻提示，一种轻量级反馈/提示，适合用于页面转场、数据交互的等场景中。",
+    "keywords": [
+        "Toast",
+        "轻提示",
+        "组件",
+        "FirstUI",
+        "Nvue"
+    ],
+    "dcloudext": {
+        "category": [
+            "前端组件",
+            "通用组件"
+        ]
+    },
+    "displayName": "Toast 轻提示（fui-toast）"
+}
