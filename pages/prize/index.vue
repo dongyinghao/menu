@@ -251,27 +251,27 @@
 					&:nth-child(odd) {
 						view {
 							background-color: #fff;
-							box-shadow: 0 0 30rpx 10rpx #fff;
+							box-shadow: 0 0 50rpx 30rpx #fff;
 						}
 						
 					}
 					&:nth-child(even) {
 						view {
-							background-color: #FA4634;
+							background-color: #c6c6c6;
 						}
 					}
 				}
 				&.off {
 					&:nth-child(odd) {
 						view {
-							background-color: #FA4634;
+							background-color: #c6c6c6;
 						}
 						
 					}
 					&:nth-child(even) {
 						view {
 							background-color: #fff;
-							box-shadow: 0 0 30rpx 10rpx #fff;
+							box-shadow: 0 0 50rpx 30rpx #fff;
 						}
 					}
 				}

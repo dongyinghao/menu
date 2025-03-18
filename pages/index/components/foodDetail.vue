@@ -5,7 +5,7 @@
 			<view class="ta-c py-24 b-b-gray bg-title">{{currentFood.name}}</view>
 			<scroll-view class="popup-box px-24 py-24" :scroll-y="true" :show-scrollbar="false">
 				<view class="imgDetail br-8 o-h">
-					<image class="wh-full" :src="'/static/img/' + currentFood.id + '.png'" mode="aspectFill"></image>
+					<image class="wh-full" :src="getImg(currentFood.id)" mode="aspectFill"></image>
 				</view>
 				<view class="pt-24">食材：</view>
 				<view v-for="(it, i) in currentFood.sideDishes" class="pl-32 mt-12 flex fs-24">
@@ -33,12 +33,17 @@
 
 <script setup>
 	import {computed, ref, defineExpose} from 'vue';
+	import imgUrlMap from '../../../data/nameAndUrlMap.js';
 
 	const detailRef = ref();
 	const currentFood = ref({});
 	const open = (data) => {
 		currentFood.value = data;
 		detailRef.value.open('bottom');
+	}
+	// 获取图片地址
+	const getImg = (id) => {
+		return imgUrlMap[id];
 	}
 	defineExpose({
 		open
