@@ -29,7 +29,7 @@
 				<view class="center"></view>
 			</view>
 		</view>
-		<view @click="onStart" class="uni-mx-16 bg-red br-16 mt-24 py-16 c-white ta-c fs-40">{{loading ? '停止' : '抽奖'}}</view>
+		<view @click="onStart" class="uni-mx-16 bg-red br-16 mt-24 py-16 c-white ta-c fs-40 btn-submit" :class="{disabled: rotating}">{{loading ? '停止' : '抽奖'}}</view>
 		<view class="set flex-bc px-32 fs-28 c-white">
 			<view @click="onSet">设置参数</view>
 			<view @click="onReset">恢复默认设置</view>
@@ -73,22 +73,23 @@
 	const messageRef = ref();
 	const setRef = ref();
 	const msg = ref('');
-	const data = ref({
-		prizeSize: 4,	// 转盘等分数量
+	const defaultData = {
+		prizeSize: 24,	// 转盘等分数量
 		lightSize: 12,	// 灯光数量
 		flagSetp: 0.8,	// 灯光变换时间间隔
-	});
+	}
 	const formData = ref({
-		prizeSize: 8,	// 转盘等分数量
-		lightSize: 12,	// 灯光数量
-		flagSetp: 0.8,	// 灯光变换时间间隔
+		...defaultData
+	});
+	const data = ref({
+		...defaultData
 	});
 	// 转盘旋转中
 	const loading = ref(false);
 	// 旋转中
 	const rotating = ref(false);
 	// 初始角度
-	const initDeg = ref(-180/formData.value.prizeSize);
+	const initDeg = ref(-180 / formData.value.prizeSize);
 	
 	const getDeg = () => {
 		const deg = Math.floor(360 / formData.value.prizeSize);
@@ -110,32 +111,36 @@
 	}
 	
 	const onStart = () => {
+		if (rotating.value) return;
+		initDeg.value = -180/formData.value.prizeSize;
 		loading.value = !loading.value;
 		if (!loading.value) {
 			setTimeout(() => {
 				const target = Math.floor(Math.random() * 360);
+				console.log('随机角度：', target);
 				initDeg.value += 360 * 1 + target;
 				const cell = 360 / formData.value.prizeSize;
-				let index = 1;
-				for(let i = 1; i <= formData.value.prizeSize; i++) {
-					if (cell * i > target) {
-						console.log(66666, i);
-						index = i;
+				// 指针走到了哪一格，逆时针从0开始计数，例：值为1表示走到了左1格
+				let index = 0;
+				for (let i = 0; i <= formData.value.prizeSize; i++) {
+					if (-cell/2 + cell*i > target) {
+						index = i - 1;
 						break;
 					}
 				};
-				// setTimeout(() => {
-				// 	msg.value = '恭喜您抽中了' + (index) + '！';
-				// 	messageRef.value.open('center');
-				// 	setTimeout(() => {
-				// 		messageRef.value.close();
-				// 	}, 2000)
-				// }, 2000)
-				console.log('旋转角度：',initDeg.value,'    中奖区域：',index,'   区域数量：',formData.value.prizeSize ,'  区域角度：' ,cell, '  中奖角度：',target % 360);
-			})
-			formData.value.flagSetp = 0.8;
+				rotating.value = true;
+				setTimeout(() => {
+					msg.value = '恭喜您抽中了' + (index ? formData.value.prizeSize - index + 1 : 1 ) + '！';
+					messageRef.value.open('center');
+					setTimeout(() => {
+						messageRef.value.close();
+					}, 2000);
+					rotating.value = false;
+				}, 2000);
+			});
+			formData.value.flagSetp = defaultData.flagSetp;
 		} else {
-			formData.value.flagSetp = 0.3;
+			formData.value.flagSetp = defaultData.flagSetp / 2;
 		}
 		init();
 	}
@@ -145,9 +150,7 @@
 	}
 	
 	const onReset = () => {
-		formData.value.lightSize = 12;
-		formData.value.prizeSize = 12;
-		formData.value.flagSetp = 0.8;
+		formData.value = {...defaultData};
 	}
 	
 	const onSet = () => {
@@ -288,6 +291,17 @@
 				padding-top: 100rpx;
 				text-align: center;
 				color: #000;
+			}
+		}
+		.btn-submit {
+			box-shadow: 0 8rpx 8rpx 2rpx #000;
+			&:not(.disabled):active {
+				position: relative;
+				box-shadow: inset 8rpx 12rpx 6rpx #000;
+				top: 4rpx;
+			}
+			&.disabled {
+				background-color: #d3392b;
 			}
 		}
 		.set {

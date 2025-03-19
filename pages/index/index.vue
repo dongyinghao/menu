@@ -30,8 +30,11 @@
 			<!--菜品分类 -->
 			<scroll-view :scroll-x="true" :show-scrollbar="false" class="b-b-gray food-type">
 				<view class="flex gap-32 py-24">
-					<view v-for="it in foodType" class="type-cell px-32 py-8 noWrap fs-28"
-						:class="{active: currentType === it.type}" @click="onTypeClick(it)">{{it.name}}</view>
+					<view v-for="it in foodType"
+						  class="type-cell px-32 py-8 noWrap fs-28"
+						  :class="{active: currentType === it.type}"
+						  @click="onTypeClick(it)"
+					>{{it.name}}</view>
 				</view>
 			</scroll-view>
 			<view v-show="isFixed" class="food-type-placeholder"></view>
@@ -62,8 +65,8 @@
 		<view 
 		 ref="cartRef"
 		 @click="onCartDetail"
-		 @touchstart.stop="onMousedown" 
-		 @touchend.stop="onMouseup"
+		 @touchstart="onMousedown" 
+		 @touchend="onMouseup"
 		 @touchmove.stop="onTouchmove" 
 		 id="myElement" 
 		 class="shopping-cart flex-cc relative" 
@@ -71,7 +74,7 @@
 		 :class="{transition: needTransition}"
 		>
 			<image src="/static/icon/shopping-cart.png"></image>
-			<uni-badge :text="totalFoods" :offset="[6, -8]" absolute="rightTop"></uni-badge>
+			<uni-badge :text="totalFoods" :offset="[4, -12]" absolute="rightTop"></uni-badge>
 		</view>
 		<view 
 			class="ball"
@@ -232,7 +235,6 @@
 			const c = findFoodByIds(['140022']);
 			list.push(...a,...b,...c);
 		}
-		console.log('菜单列表：', list);
 		selectedFood.value.clear();
 		list.forEach(it => {
 			const selected = selectedFood.value.get(it.name);
@@ -297,13 +299,12 @@
 
 	// 点击购物车
 	const onCartDetail = (data) => {
-		popupCartRef.value.open('bottom')
+		popupCartRef.value.open('bottom');
 	}
 
 	// 点击添加购物车
 	const onFoodAdd = (e, data) => {
 		throwBall(e.touches[0], () => {
-			console.log('添加菜品：', data.name);
 			const selected = selectedFood.value.get(data.name);
 			if (selected) {
 				++selected.number;
@@ -335,7 +336,6 @@
 			const {a,b,c} = getEquation({x1,y1,x2,y2,x3,y3});
 			var timer = setInterval(() => {
 				const realTimeD = distance(x3,y3, x, y);
-				console.log('实时距离：', realTimeD);
 				if (realTimeD > 25) {
 					x += setpX;
 					if (Math.abs(w) < 24) {
@@ -359,21 +359,18 @@
 
 	// 按下购物车按钮
 	const onMousedown = (e) => {
-		console.log('手指按下', e);
 		needTransition.value = false;
 	}
 
 	// 按下购物车按钮
 	const onTouchmove = (e) => {
 		const ev = e.touches[0];
-		console.log('手指拖动', ev);
 		currentPosition.value.left = ev.pageX * 2 - 70 + 'rpx';
 		currentPosition.value.top = Math.min(ev.pageY * 2 - 100, 1430) + 'rpx';
 	}
 
 	// 按下购物车按钮
 	const onMouseup = (e) => {
-		console.log('手指抬起', e.currentTarget);
 		needTransition.value = true;
 		if (e.currentTarget.offsetLeft < 186) {
 			currentPosition.value.left = '12rpx';
@@ -383,12 +380,11 @@
 		if (e.currentTarget.offsetTop < 20) {
 			currentPosition.value.top = '14rpx';
 		}
-		console.log(e.currentTarget);
 	}
 
 	const isFixed = ref(false);
 	const onScroll = (e) => {
-		isFixed.value = e.detail.scrollTop > 184;
+		isFixed.value = e.detail.scrollTop > 178;
 	}
 
 	// 根据三个点的坐标计算二次抛物线公式的常量
@@ -509,7 +505,7 @@
 			&.isFixed {
 				.food-type {
 					position: fixed;
-					top: 324rpx;
+					top: 322rpx;
 					width: 100%;
 					left: 0;
 					z-index: 2;

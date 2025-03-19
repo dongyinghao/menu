@@ -1,5 +1,5 @@
 {
-    "name" : "ceshi",
+    "name" : "琳儿点餐系统",
     "appid" : "__UNI__E01957E",
     "description" : "",
     "versionName" : "1.0.0",
@@ -50,9 +50,10 @@
     /* 快应用特有相关 */
     "mp-weixin" : {
         /* 小程序特有相关 */
-        "appid" : "",
+        "appid" : "wx6e09d2bb86851b3e",
         "setting" : {
-            "urlCheck" : false
+            "urlCheck" : false,
+            "minified" : true
         },
         "usingComponents" : true
     },
