@@ -10,7 +10,7 @@
 				<view v-for="i in formData.prizeSize" class="cell" :style="{
 					zIndex: i,
 					clipPath: 'polygon(0% 0%, 100% 0%, ' + getDeg() + ')',
-					transform:'rotate('+(i-1)*360/formData.prizeSize+'deg)',
+					transform:'rotate('+((i-1)*360/formData.prizeSize + 270) +'deg)',
 					backgroundColor: i%2 ? '#FAF8F3' : '#FAE4B0'}"
 				></view>
 				<!-- 转盘数字 -->
@@ -146,11 +146,12 @@
 	}
 	
 	const onChange = (v, k) => {
-		formData.value[k] = v.detail.value;
+		data.value[k] = v.detail.value;
 	}
 	
 	const onReset = () => {
 		formData.value = {...defaultData};
+		initDeg.value = -180 / formData.value.prizeSize;
 	}
 	
 	const onSet = () => {
@@ -164,6 +165,8 @@
 	
 	const onSubmit = () => {
 		setRef.value.close();
+		Object.assign(formData.value, data.value);
+		initDeg.value = -180 / formData.value.prizeSize;
 	}
 	
 	onMounted(init);
