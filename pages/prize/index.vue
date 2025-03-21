@@ -74,7 +74,7 @@
 	const setRef = ref();
 	const msg = ref('');
 	const defaultData = {
-		prizeSize: 24,	// 转盘等分数量
+		prizeSize: 12,	// 转盘等分数量
 		lightSize: 12,	// 灯光数量
 		flagSetp: 0.8,	// 灯光变换时间间隔
 	}
@@ -235,7 +235,7 @@
 				}
 			}
 			.light-box {
-				width: 36rpx;
+				width: 30rpx;
 				margin: 0 auto;
 				position: absolute;
 				z-index: 99;
@@ -246,7 +246,7 @@
 				view {
 					width: 100%;
 					border-radius: 50%;
-					height: 36rpx;
+					height: 30rpx;
 					background-color: #fff;
 					&:last-child {
 						position: absolute;
@@ -257,7 +257,7 @@
 					&:nth-child(odd) {
 						view {
 							background-color: #fff;
-							box-shadow: 0 0 50rpx 30rpx #fff;
+							box-shadow: 0 0 30rpx 14rpx #fff;
 						}
 						
 					}
@@ -277,7 +277,7 @@
 					&:nth-child(even) {
 						view {
 							background-color: #fff;
-							box-shadow: 0 0 50rpx 30rpx #fff;
+							box-shadow: 0 0 30rpx 14rpx #fff;
 						}
 					}
 				}
@@ -297,10 +297,9 @@
 			}
 		}
 		.btn-submit {
-			box-shadow: 0 8rpx 8rpx 2rpx #000;
 			&:not(.disabled):active {
 				position: relative;
-				box-shadow: inset 8rpx 12rpx 6rpx #000;
+				box-shadow: inset 8rpx 12rpx 6rpx #666;
 				top: 4rpx;
 			}
 			&.disabled {

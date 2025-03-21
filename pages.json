@@ -48,7 +48,7 @@
 	    "list": [
 	      {
 	        "pagePath": "pages/index/index",
-	        "text": "首页",
+	        "text": "菜单",
 	        "iconPath": "static/icon/icon-menu.png",
 	        "selectedIconPath": "static/icon/icon-menu-active.png"
 	      },
@@ -60,9 +60,9 @@
 	      },
 	      {
 	        "pagePath": "pages/cart/index",
-	        "text": "购物车",
-	        "iconPath": "static/icon/icon-cart.png",
-	        "selectedIconPath": "static/icon/icon-cart-active.png"
+	        "text": "订单",
+	        "iconPath": "static/icon/icon-order.png",
+	        "selectedIconPath": "static/icon/icon-order-active.png"
 	      },
 	      {
 	        "pagePath": "pages/mine/index",

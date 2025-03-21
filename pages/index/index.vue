@@ -92,9 +92,9 @@
 							<view class="icon-food mr-20">
 								<image class="wh-full br-12" :src="getImg(v.data.id)"></image>
 							</view>
-							<view class="food-name oneline fs-24">{{v.data.name}}</view>
+							<view class="food-name oneline fs-28">{{v.data.name}}</view>
 						</view>
-						<view class="flex-vc fs-28">
+						<view class="flex-vc fs-32">
 							<view class="icon-add" @click="++v.number"></view>
 							<view class="uni-mx-8">{{v.number}}<text class="uni-ml-1">份</text></view>
 							<view class="icon-sub" @click="onSubNumber(v)"></view>
